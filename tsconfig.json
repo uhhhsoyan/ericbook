@@ -1,12 +1,35 @@
 {
   "compilerOptions": {
+    "target": "esnext",
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "jsx": "react-native",
-    "lib": ["dom", "esnext"],
+    "lib": ["dom"],
     "moduleResolution": "node",
     "noEmit": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "strict": true
-  }
+    "strict": true,
+    "noImplicitAny": true,
+    "strictFunctionTypes": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "baseUrl": ".",
+    "typeRoots": ["./node_modules/@types/", "./types/*"],
+
+    /** Keep up-to-date with babel.config.js and import-sorter.json */
+    "paths": {
+      "@assets/*": ["assets/*"],
+      "@components": ["components"],
+      "@components/*": ["components/*"],
+      "@constants": ["constants"],
+      "@context": ["context"],
+      "@graphql": ["graphql"],
+      "@hooks": ["hooks"],
+      "@navigation/*": ["navigation/*"],
+      "@state/*": ["state/*"],
+      "@types": ["types"]
+    }
+  },
+  "exclude": ["node_modules", "babel.config.js"]
 }

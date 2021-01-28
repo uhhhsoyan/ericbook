@@ -1,0 +1,27 @@
+{
+  "editor.rulers": [100],
+  "editor.formatOnSave": true,
+  "prettier.printWidth": 100,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "all",
+  // "workbench.colorCustomizations": {
+  //   "activityBar.background": "#8a6ac6",
+  //   "activityBar.activeBackground": "#8a6ac6",
+  //   "activityBar.activeBorder": "#8a6ac6",
+  //   "activityBar.foreground": "#ffffff",
+  //   "activityBar.inactiveForeground": "#ffffff80",
+  //   "activityBarBadge.background": "#8a6ac6",
+  //   "activityBarBadge.foreground": "#ffffff",
+  //   "titleBar.activeBackground": "#8a6ac6",
+  //   "titleBar.inactiveBackground": "#8a6ac680",
+  //   "titleBar.activeForeground": "#ffffff",
+  //   "titleBar.inactiveForeground": "#ffffff80",
+  //   "statusBar.background": "#8a6ac6",
+  //   "statusBarItem.hoverBackground": "#ffffff80",
+  //   "statusBar.foreground": "#ffffff",
+  //   "tab.activeBorder": "#8a6ac6",
+  //   "statusBar.border": "#8a6ac6",
+  //   "titleBar.border": "#8a6ac6"
+  // },
+  "typescript.preferences.importModuleSpecifier": "relative"
+}
