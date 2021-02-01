@@ -1,6 +1,6 @@
 import React, { FC, useState, useContext } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { TextInput, Button, Title } from 'react-native-paper';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, TextInput, Button, Title } from 'react-native-paper';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
@@ -49,7 +49,6 @@ const SignInScreen: FC<Props> = () => {
   }
 
   const onSubmit = () => {
-    console.log(credentials);
     loginUserCallback();
   };
 
@@ -85,6 +84,7 @@ const SignInScreen: FC<Props> = () => {
             theme={{ colors: { primary: appColors.blue } }}
           />
         </View>
+        {errors && <Text style={{ color: appColors.red }}>Sign in failed. {errors.general} </Text>}
         <Button
           onPress={onSubmit}
           mode="contained"
@@ -93,7 +93,8 @@ const SignInScreen: FC<Props> = () => {
             width: deviceWidth * 0.4,
             height: 50,
             borderRadius: 5,
-            marginBottom: 30,
+            marginTop: hp(5),
+            marginBottom: hp(3),
             alignItems: 'center',
             justifyContent: 'center',
           }}

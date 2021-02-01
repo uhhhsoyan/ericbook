@@ -68,6 +68,7 @@ const SignUpScreen: FC<Props> = () => {
             onChangeText={(text) => onChangeText(text, 'username')}
             style={{ height: 50, width: '100%', marginBottom: hp(1) }}
             theme={{ colors: { primary: appColors.blue } }}
+            error={errors.username ? true : false}
           />
           <TextInput
             mode="outlined"
@@ -78,6 +79,7 @@ const SignUpScreen: FC<Props> = () => {
             onChangeText={(text) => onChangeText(text, 'email')}
             style={{ height: 50, width: '100%', marginBottom: hp(1) }}
             theme={{ colors: { primary: appColors.blue } }}
+            error={errors.email ? true : false}
           />
           <TextInput
             mode="outlined"
@@ -89,6 +91,7 @@ const SignUpScreen: FC<Props> = () => {
             onChangeText={(text) => onChangeText(text, 'password')}
             style={{ height: 50, width: '100%', marginBottom: hp(1) }}
             theme={{ colors: { primary: appColors.blue } }}
+            error={errors.password ? true : false}
           />
           <TextInput
             mode="outlined"
@@ -100,8 +103,13 @@ const SignUpScreen: FC<Props> = () => {
             onChangeText={(text) => onChangeText(text, 'confirmPassword')}
             style={{ height: 50, width: '100%', marginBottom: hp(1) }}
             theme={{ colors: { primary: appColors.blue } }}
+            error={errors.confirmPassword ? true : false}
           />
         </View>
+        {errors &&
+          Object.values(errors).map((error) => (
+            <Text style={{ color: appColors.red }}>{error}</Text>
+          ))}
         <Button
           onPress={onSubmit}
           mode="contained"
@@ -110,7 +118,8 @@ const SignUpScreen: FC<Props> = () => {
             width: width * 0.4,
             height: 50,
             borderRadius: 5,
-            marginBottom: 30,
+            marginTop: hp(5),
+            marginBottom: hp(3),
             alignItems: 'center',
             justifyContent: 'center',
           }}
