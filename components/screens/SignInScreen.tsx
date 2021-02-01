@@ -7,6 +7,7 @@ import gql from 'graphql-tag';
 import { appColors, hp, ROUTES, width as deviceWidth } from '@constants';
 import NavigationService from '@navigation/NavigationService';
 import { AuthContext } from '@context';
+import { DismissKeyboard } from '../../util';
 
 type Props = Record<string, unknown>;
 
@@ -53,55 +54,57 @@ const SignInScreen: FC<Props> = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Title style={{ fontSize: 32, color: appColors.blue }}>Welcome back!</Title>
-      <View
-        style={{
-          width: deviceWidth,
-          padding: 30,
-        }}
-      >
-        <TextInput
-          mode="outlined"
-          label="username"
-          autoCorrect={false}
-          autoCapitalize="none"
-          value={credentials.username}
-          onChangeText={(text) => onChangeText(text, 'username')}
-          style={{ height: 50, width: '100%', marginBottom: hp(1) }}
-          theme={{ colors: { primary: appColors.blue } }}
-        />
-        <TextInput
-          mode="outlined"
-          label="password"
-          autoCorrect={false}
-          autoCapitalize="none"
-          secureTextEntry
-          value={credentials.password}
-          onChangeText={(text) => onChangeText(text, 'password')}
-          style={{ height: 50, width: '100%', marginBottom: hp(1) }}
-          theme={{ colors: { primary: appColors.blue } }}
-        />
+    <DismissKeyboard>
+      <View style={styles.container}>
+        <Title style={{ fontSize: 32, color: appColors.blue }}>Welcome back!</Title>
+        <View
+          style={{
+            width: deviceWidth,
+            padding: 30,
+          }}
+        >
+          <TextInput
+            mode="outlined"
+            label="username"
+            autoCorrect={false}
+            autoCapitalize="none"
+            value={credentials.username}
+            onChangeText={(text) => onChangeText(text, 'username')}
+            style={{ height: 50, width: '100%', marginBottom: hp(1) }}
+            theme={{ colors: { primary: appColors.blue } }}
+          />
+          <TextInput
+            mode="outlined"
+            label="password"
+            autoCorrect={false}
+            autoCapitalize="none"
+            secureTextEntry
+            value={credentials.password}
+            onChangeText={(text) => onChangeText(text, 'password')}
+            style={{ height: 50, width: '100%', marginBottom: hp(1) }}
+            theme={{ colors: { primary: appColors.blue } }}
+          />
+        </View>
+        <Button
+          onPress={onSubmit}
+          mode="contained"
+          color={appColors.blue}
+          style={{
+            width: deviceWidth * 0.4,
+            height: 50,
+            borderRadius: 5,
+            marginBottom: 30,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          Sign In
+        </Button>
+        <TouchableOpacity onPress={() => NavigationService.navigate(ROUTES.AUTH.SIGN_UP.name)}>
+          <Text style={{ textAlign: 'center' }}>Need to sign up?{'\n'}Click here!</Text>
+        </TouchableOpacity>
       </View>
-      <Button
-        onPress={onSubmit}
-        mode="contained"
-        color={appColors.blue}
-        style={{
-          width: deviceWidth * 0.4,
-          height: 50,
-          borderRadius: 5,
-          marginBottom: 30,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        Sign In
-      </Button>
-      <TouchableOpacity onPress={() => NavigationService.navigate(ROUTES.AUTH.SIGN_UP.name)}>
-        <Text style={{ textAlign: 'center' }}>Need to sign up?{'\n'}Click here!</Text>
-      </TouchableOpacity>
-    </View>
+    </DismissKeyboard>
   );
 };
 

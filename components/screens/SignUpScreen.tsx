@@ -7,6 +7,7 @@ import { appColors, ROUTES, width, hp } from '@constants';
 import { AuthContext } from '@context';
 import NavigationService from '@navigation/NavigationService';
 import { useMutation } from '@apollo/react-hooks';
+import { DismissKeyboard } from '../../util';
 
 type Props = Record<string, unknown>;
 
@@ -49,76 +50,78 @@ const SignUpScreen: FC<Props> = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Title style={{ fontSize: 32, color: appColors.blue }}>Welcome!</Title>
-      <View
-        style={{
-          width,
-          padding: 30,
-        }}
-      >
-        <TextInput
-          mode="outlined"
-          label="username"
-          autoCorrect={false}
-          autoCapitalize="none"
-          value={credentials.username}
-          onChangeText={(text) => onChangeText(text, 'username')}
-          style={{ height: 50, width: '100%', marginBottom: hp(1) }}
-          theme={{ colors: { primary: appColors.blue } }}
-        />
-        <TextInput
-          mode="outlined"
-          label="email"
-          autoCorrect={false}
-          autoCapitalize="none"
-          value={credentials.email}
-          onChangeText={(text) => onChangeText(text, 'email')}
-          style={{ height: 50, width: '100%', marginBottom: hp(1) }}
-          theme={{ colors: { primary: appColors.blue } }}
-        />
-        <TextInput
-          mode="outlined"
-          label="password"
-          autoCorrect={false}
-          autoCapitalize="none"
-          secureTextEntry
-          value={credentials.password}
-          onChangeText={(text) => onChangeText(text, 'password')}
-          style={{ height: 50, width: '100%', marginBottom: hp(1) }}
-          theme={{ colors: { primary: appColors.blue } }}
-        />
-        <TextInput
-          mode="outlined"
-          label="confirm password"
-          autoCorrect={false}
-          autoCapitalize="none"
-          secureTextEntry
-          value={credentials.confirmPassword}
-          onChangeText={(text) => onChangeText(text, 'confirmPassword')}
-          style={{ height: 50, width: '100%', marginBottom: hp(1) }}
-          theme={{ colors: { primary: appColors.blue } }}
-        />
+    <DismissKeyboard>
+      <View style={styles.container}>
+        <Title style={{ fontSize: 32, color: appColors.blue }}>Welcome!</Title>
+        <View
+          style={{
+            width,
+            padding: 30,
+          }}
+        >
+          <TextInput
+            mode="outlined"
+            label="username"
+            autoCorrect={false}
+            autoCapitalize="none"
+            value={credentials.username}
+            onChangeText={(text) => onChangeText(text, 'username')}
+            style={{ height: 50, width: '100%', marginBottom: hp(1) }}
+            theme={{ colors: { primary: appColors.blue } }}
+          />
+          <TextInput
+            mode="outlined"
+            label="email"
+            autoCorrect={false}
+            autoCapitalize="none"
+            value={credentials.email}
+            onChangeText={(text) => onChangeText(text, 'email')}
+            style={{ height: 50, width: '100%', marginBottom: hp(1) }}
+            theme={{ colors: { primary: appColors.blue } }}
+          />
+          <TextInput
+            mode="outlined"
+            label="password"
+            autoCorrect={false}
+            autoCapitalize="none"
+            secureTextEntry
+            value={credentials.password}
+            onChangeText={(text) => onChangeText(text, 'password')}
+            style={{ height: 50, width: '100%', marginBottom: hp(1) }}
+            theme={{ colors: { primary: appColors.blue } }}
+          />
+          <TextInput
+            mode="outlined"
+            label="confirm password"
+            autoCorrect={false}
+            autoCapitalize="none"
+            secureTextEntry
+            value={credentials.confirmPassword}
+            onChangeText={(text) => onChangeText(text, 'confirmPassword')}
+            style={{ height: 50, width: '100%', marginBottom: hp(1) }}
+            theme={{ colors: { primary: appColors.blue } }}
+          />
+        </View>
+        <Button
+          onPress={onSubmit}
+          mode="contained"
+          color={appColors.blue}
+          style={{
+            width: width * 0.4,
+            height: 50,
+            borderRadius: 5,
+            marginBottom: 30,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          Sign Up
+        </Button>
+        <TouchableOpacity onPress={() => NavigationService.navigate(ROUTES.AUTH.SIGN_IN.name)}>
+          <Text style={{ textAlign: 'center' }}>Already have an account?{'\n'}Click here!</Text>
+        </TouchableOpacity>
       </View>
-      <Button
-        onPress={onSubmit}
-        mode="contained"
-        color={appColors.blue}
-        style={{
-          width: width * 0.4,
-          height: 50,
-          borderRadius: 5,
-          marginBottom: 30,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        Sign Up
-      </Button>
-      <TouchableOpacity onPress={() => NavigationService.navigate(ROUTES.AUTH.SIGN_IN.name)}>
-        <Text style={{ textAlign: 'center' }}>Already have an account?{'\n'}Click here!</Text>
-      </TouchableOpacity>
-    </View>
+    </DismissKeyboard>
   );
 };
 

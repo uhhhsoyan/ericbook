@@ -7,7 +7,7 @@ import LikeButton from './LikeButton';
 import { AuthContext } from '@context';
 import { appColors, hp, ROUTES, width } from '../constants';
 import NavigationService from '../navigation/NavigationService';
-// import DeleteButton from './DeleteButton';
+import DeleteButton from './DeleteButton';
 
 const LeftContent = (props) => (
   <Avatar.Icon {...props} style={{ backgroundColor: appColors.blue }} icon="account" />
@@ -46,6 +46,7 @@ const PostCard: FC<Props> = ({
         >
           {commentCount}
         </Button>
+        {user && user.username === username && <DeleteButton postId={id} />}
       </Card.Actions>
     </Card>
   );
