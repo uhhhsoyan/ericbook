@@ -1,6 +1,6 @@
 import React, { FC, useState, useContext } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { Text, TextInput, Button, Title } from 'react-native-paper';
+import { Text, TextInput, Button, Title, ActivityIndicator } from 'react-native-paper';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
@@ -26,7 +26,7 @@ const SignInScreen: FC<Props> = () => {
   };
 
   const [loginUser, { loading }] = useMutation(LOGIN_USER, {
-    // udpate triggered if mutation successful
+    // update triggered if mutation successful
     update(_, { data: { login: userData } }) {
       // destructuring data from result, login from data, aliasing as userData
       context.login(userData);
@@ -51,8 +51,6 @@ const SignInScreen: FC<Props> = () => {
   const onSubmit = () => {
     loginUserCallback();
   };
-
-  console.log();
 
   return (
     <DismissKeyboard>
@@ -89,22 +87,28 @@ const SignInScreen: FC<Props> = () => {
         {Object.keys(errors).length > 0 && (
           <Text style={{ color: appColors.red }}>Sign in failed. {errors.general} </Text>
         )}
-        <Button
-          onPress={onSubmit}
-          mode="contained"
-          color={appColors.blue}
-          style={{
-            width: deviceWidth * 0.4,
-            height: 50,
-            borderRadius: 5,
-            marginTop: hp(5),
-            marginBottom: hp(3),
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          Sign In
-        </Button>
+        {loading ? (
+          <View style={{ height: 50, marginTop: hp(5), marginBottom: hp(3) }}>
+            <ActivityIndicator size="large" animating={true} color={appColors.blue} />
+          </View>
+        ) : (
+          <Button
+            onPress={onSubmit}
+            mode="contained"
+            color={appColors.blue}
+            style={{
+              width: deviceWidth * 0.4,
+              height: 50,
+              borderRadius: 5,
+              marginTop: hp(5),
+              marginBottom: hp(3),
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            Sign In
+          </Button>
+        )}
         <TouchableOpacity onPress={() => NavigationService.navigate(ROUTES.AUTH.SIGN_UP.name)}>
           <Text style={{ textAlign: 'center' }}>Need to sign up?{'\n'}Click here!</Text>
         </TouchableOpacity>

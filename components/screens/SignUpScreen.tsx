@@ -28,7 +28,6 @@ const SignUpScreen: FC<Props> = () => {
   const [addUser, { loading }] = useMutation(REGISTER_USER, {
     update(_, { data: { register: userData } }) {
       context.login(userData);
-      // NavigationService.navigate(ROUTES.MAIN.HOME.name); // Redirect to the home page
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.exception.errors);

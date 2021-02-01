@@ -28,7 +28,7 @@ const HomeScreen: FC<Props> = () => {
             justifyContent: 'space-between',
           }}
         >
-          <Title style={{ color: '#1c5d99' }}>ericbook</Title>
+          <Title style={{ color: appColors.blue }}>ericbook</Title>
           <IconButton
             icon="account"
             size={20}
@@ -56,7 +56,11 @@ const HomeScreen: FC<Props> = () => {
       {loading ? (
         <Text>Loading posts...</Text>
       ) : (
-        <ScrollView style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          style={{ width: '100%' }}
+          contentContainerStyle={{ alignItems: 'center' }}
+        >
           {posts && posts.map((post: Post) => <PostCard key={post.id} post={post} />)}
         </ScrollView>
       )}

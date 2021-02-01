@@ -15,10 +15,12 @@ const LeftContent = (props) => (
 
 type Props = {
   post: Post;
+  callback?: () => void;
 };
 
 const PostCard: FC<Props> = ({
   post: { body, createdAt, id, username, likeCount, commentCount, likes, comments },
+  callback,
 }) => {
   const { user } = useContext(AuthContext);
   return (
@@ -46,7 +48,7 @@ const PostCard: FC<Props> = ({
         >
           {commentCount}
         </Button>
-        {user && user.username === username && <DeleteButton postId={id} />}
+        {user && user.username === username && <DeleteButton postId={id} callback={callback} />}
       </Card.Actions>
     </Card>
   );
