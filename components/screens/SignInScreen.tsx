@@ -52,6 +52,8 @@ const SignInScreen: FC<Props> = () => {
     loginUserCallback();
   };
 
+  console.log();
+
   return (
     <DismissKeyboard>
       <View style={styles.container}>
@@ -84,7 +86,9 @@ const SignInScreen: FC<Props> = () => {
             theme={{ colors: { primary: appColors.blue } }}
           />
         </View>
-        {errors && <Text style={{ color: appColors.red }}>Sign in failed. {errors.general} </Text>}
+        {Object.keys(errors).length > 0 && (
+          <Text style={{ color: appColors.red }}>Sign in failed. {errors.general} </Text>
+        )}
         <Button
           onPress={onSubmit}
           mode="contained"
